@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace MyFileBackup.Models
+﻿namespace MyFileBackup.Models
 {
     public class Config
     {
