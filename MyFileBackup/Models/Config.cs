@@ -25,8 +25,17 @@ namespace MyFileBackup.Models
         /// <summary>
         /// 建構子
         /// </summary>
-        public Config()
+        public Config(string connectionString, string destination, string dir, string ext, string handler, string location, bool remove, bool subDirectory, string unit)
         {
+            this.connectionString = connectionString;
+            this.destination = destination;
+            this.dir = dir;
+            this.ext = ext;
+            this.handler = handler;
+            this.location = location;
+            this.remove = remove;
+            this.subDirectory = subDirectory;
+            this.unit = unit;
         }
 
         [JsonProperty("connectionString")]
