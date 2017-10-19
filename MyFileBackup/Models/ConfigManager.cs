@@ -8,13 +8,13 @@ namespace MyFileBackup.Models
     public class ConfigManager
     {
         // 定義設定檔資料夾路徑
-        private const String PATH = @"../../Configs/";
+        private const String PATH = @"../../Configs/config.json";
 
         /// <summary>
         /// Field
         /// </summary>
         [JsonProperty("configs")]
-        private List<Config> configs;
+        private List<Config> configs = new List<Config>();
 
         /// <summary>
         /// Property
@@ -28,11 +28,23 @@ namespace MyFileBackup.Models
         }
 
         /// <summary>
+        /// 索引子
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns>指定索引config物件</returns>
+        public Config this[int index]
+        {
+            get
+            {
+                return this.configs[index];
+            }
+        }
+
+        /// <summary>
         /// Method
         /// </summary>
-        public List<Config> ProcessConfigs()
+        public void ProcessConfigs()
         {
-            this.configs = new List<Config>();
             try
             {
                 dynamic configObj = GetConfig();
@@ -58,8 +70,6 @@ namespace MyFileBackup.Models
                 // TODO：設定檔讀取錯誤
                 // throw;
             }
-
-            return configs;
         }
 
         /// <summary>
@@ -81,7 +91,7 @@ namespace MyFileBackup.Models
         /// <returns>設定檔內容</returns>
         private static string GetConfigValue()
         {
-            return File.ReadAllText(PATH + "config.json");
+            return File.ReadAllText(PATH);
         }
     }
 }

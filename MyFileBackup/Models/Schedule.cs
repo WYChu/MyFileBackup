@@ -4,17 +4,44 @@ namespace MyFileBackup.Models
 {
     public class Schedule
     {
-        public Schedule()
+        private string ext;
+
+        private string interval;
+
+        private string time;
+
+        public Schedule(string ext, string interval, string time)
         {
+            this.ext = ext;
+            this.interval = interval;
+            this.time = time;
         }
 
         [JsonProperty("ext")]
-        public string Ext { get; set; }
+        public string Ext
+        {
+            get
+            {
+                return this.ext;
+            }
+        }
 
         [JsonProperty("interval")]
-        public string Interval { get; set; }
+        public string Interval
+        {
+            get
+            {
+                return this.interval;
+            }
+        }
 
         [JsonProperty("time")]
-        public string Time { get; set; }
+        public string Time
+        {
+            get
+            {
+                return this.time;
+            }
+        }
     }
 }
