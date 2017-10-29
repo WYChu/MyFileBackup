@@ -57,10 +57,12 @@
     </Compile>
     <Compile Include="Models\Config.cs" />
     <Compile Include="Models\ConfigManager.cs" />
+    <Compile Include="Models\JsonManager.cs" />
     <Compile Include="Models\ScheduleManager.cs" />
     <Compile Include="Models\Schedule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\MyBackupService.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

@@ -1,11 +1,10 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
 
 namespace MyFileBackup.Models
 {
-    public class ConfigManager
+    public class ConfigManager : JsonManager
     {
         // 定義設定檔資料夾路徑
         private const String PATH = @"../../Configs/config.json";
@@ -43,11 +42,11 @@ namespace MyFileBackup.Models
         /// <summary>
         /// Method
         /// </summary>
-        public void ProcessConfigs()
+        public override void ProcessJsonConfig()
         {
             try
             {
-                dynamic configObj = GetConfig();
+                dynamic configObj = this.GetJsonObject(PATH);
 
                 foreach (var item in configObj["configs"])
                 {
@@ -70,28 +69,6 @@ namespace MyFileBackup.Models
                 // TODO：設定檔讀取錯誤
                 // throw;
             }
-        }
-
-        /// <summary>
-        /// 取得設定檔物件
-        /// </summary>
-        /// <returns>設定檔物件</returns>
-        private static dynamic GetConfig()
-        {
-            string configValue = GetConfigValue();
-
-            dynamic configObj = JsonConvert.DeserializeObject(configValue);
-
-            return configObj;
-        }
-
-        /// <summary>
-        /// 讀取設定檔內容
-        /// </summary>
-        /// <returns>設定檔內容</returns>
-        private static string GetConfigValue()
-        {
-            return File.ReadAllText(PATH);
         }
     }
 }

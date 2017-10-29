@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MyFileBackup.Models;
+using MyFileBackup.Services;
+using System;
 using System.Windows.Forms;
-using MyFileBackup.Models;
 
 namespace MyFileBackup
 {
@@ -24,8 +18,8 @@ namespace MyFileBackup
         private void Form1_Load(object sender, EventArgs e)
         {
             this.InitForm();
-            ShowConfig();
-            ShowSchedule();
+            //ShowConfig();
+            //ShowSchedule();
         }
 
         /// <summary>
@@ -33,8 +27,8 @@ namespace MyFileBackup
         /// </summary>
         private void InitForm()
         {
-            configManager.ProcessConfigs();
-            scheduleManager.ProcessSchedules();
+            MyBackupService myBackupService = new MyBackupService();
+            myBackupService.ProcessJsonConfigs();
         }
 
         /// <summary>

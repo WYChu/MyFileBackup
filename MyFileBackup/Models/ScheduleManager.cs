@@ -1,11 +1,10 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
 
 namespace MyFileBackup.Models
 {
-    public class ScheduleManager
+    public class ScheduleManager : JsonManager
     {
         // 定義設定檔資料夾路徑
         private const String PATH = @"../../Configs/schedule.json";
@@ -43,11 +42,11 @@ namespace MyFileBackup.Models
         /// <summary>
         /// Method
         /// </summary>
-        public void ProcessSchedules()
+        public override void ProcessJsonConfig()
         {
             try
             {
-                dynamic scheduleObj = GetSchedule();
+                dynamic scheduleObj = this.GetJsonObject(PATH);
 
                 foreach (var item in scheduleObj["schedules"])
                 {
@@ -64,28 +63,6 @@ namespace MyFileBackup.Models
                 // TODO：設定檔讀取錯誤
                 // throw;
             }
-        }
-
-        /// <summary>
-        /// 取得設定檔物件
-        /// </summary>
-        /// <returns>設定檔物件</returns>
-        private static dynamic GetSchedule()
-        {
-            string configValue = GetScheduleValue();
-
-            dynamic configObj = JsonConvert.DeserializeObject(configValue);
-
-            return configObj;
-        }
-
-        /// <summary>
-        /// 讀取設定檔內容
-        /// </summary>
-        /// <returns>設定檔內容</returns>
-        private static string GetScheduleValue()
-        {
-            return File.ReadAllText(PATH);
         }
     }
 }
