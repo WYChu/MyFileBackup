@@ -1,4 +1,5 @@
-﻿using MyFileBackup.Models;
+﻿using MyFileBackup.Handlers;
+using MyFileBackup.Medels;
 using MyFileBackup.Services;
 using System;
 using System.Windows.Forms;
@@ -8,11 +9,17 @@ namespace MyFileBackup
     public partial class MainForm : Form
     {
         private ConfigManager configManager = new ConfigManager();
+        private MyBackupService myBackupService = new MyBackupService();
         private ScheduleManager scheduleManager = new ScheduleManager();
 
         public MainForm()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            myBackupService.DoBackup();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -27,7 +34,6 @@ namespace MyFileBackup
         /// </summary>
         private void InitForm()
         {
-            MyBackupService myBackupService = new MyBackupService();
             myBackupService.ProcessJsonConfigs();
         }
 
@@ -44,7 +50,7 @@ namespace MyFileBackup
                 bool subDirectory = config.SubDirectory;
                 string unit = config.Unit;
                 bool remove = config.Remove;
-                string handler = config.Handler;
+                string[] handler = config.Handlers;
                 string destination = config.Destination;
                 string dir = config.Dir;
                 string connectionString = config.ConnectionString;

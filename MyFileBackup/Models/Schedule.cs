@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace MyFileBackup.Models
+namespace MyFileBackup.Medels
 {
     public class Schedule
     {

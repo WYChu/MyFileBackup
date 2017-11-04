@@ -1,8 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using MyFileBackup.Medels;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
-namespace MyFileBackup.Models
+namespace MyFileBackup.Handlers
 {
     public class ConfigManager : JsonManager
     {
@@ -54,12 +55,12 @@ namespace MyFileBackup.Models
                     string destination = item["destination"];
                     string dir = item["dir"];
                     string ext = item["ext"];
-                    string handler = item["handler"];
+                    string[] handlers = item["handlers"];
                     string location = item["location"];
                     bool remove = item["remove"];
                     bool subDirectory = item["subDirectory"];
                     string unit = item["unit"];
-                    Config config = new Config(connectionString, destination, dir, ext, handler, location, remove, subDirectory, unit);
+                    Config config = new Config(connectionString, destination, dir, ext, handlers, location, remove, subDirectory, unit);
 
                     this.configs.Add(config);
                 }

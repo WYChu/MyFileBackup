@@ -1,8 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using MyFileBackup.Medels;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
-namespace MyFileBackup.Models
+namespace MyFileBackup.Handlers
 {
     public class ScheduleManager : JsonManager
     {

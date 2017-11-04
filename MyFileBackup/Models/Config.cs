@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace MyFileBackup.Models
+namespace MyFileBackup.Medels
 {
     public class Config
     {
@@ -12,7 +12,7 @@ namespace MyFileBackup.Models
 
         private string ext;
 
-        private string handler;
+        private string[] handlers;
 
         private string location;
 
@@ -25,13 +25,13 @@ namespace MyFileBackup.Models
         /// <summary>
         /// 建構子
         /// </summary>
-        public Config(string connectionString, string destination, string dir, string ext, string handler, string location, bool remove, bool subDirectory, string unit)
+        public Config(string connectionString, string destination, string dir, string ext, string[] handlers, string location, bool remove, bool subDirectory, string unit)
         {
             this.connectionString = connectionString;
             this.destination = destination;
             this.dir = dir;
             this.ext = ext;
-            this.handler = handler;
+            this.handlers = handlers;
             this.location = location;
             this.remove = remove;
             this.subDirectory = subDirectory;
@@ -75,11 +75,11 @@ namespace MyFileBackup.Models
         }
 
         [JsonProperty("handler")]
-        public string Handler
+        public string[] Handlers
         {
             get
             {
-                return this.handler;
+                return this.handlers;
             }
         }
 

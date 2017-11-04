@@ -44,6 +44,7 @@
             this.interval = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.configNumber = new System.Windows.Forms.Label();
             this.scheduleNumber = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.configGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scheduleGridView)).BeginInit();
             this.SuspendLayout();
@@ -164,11 +165,22 @@
             this.scheduleNumber.TabIndex = 4;
             this.scheduleNumber.Text = "Schedule參數共 $num 筆";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(560, 40);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 461);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.scheduleNumber);
             this.Controls.Add(this.configNumber);
             this.Controls.Add(this.scheduleGridView);
@@ -200,6 +212,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn interval;
         private System.Windows.Forms.Label configNumber;
         private System.Windows.Forms.Label scheduleNumber;
+        private System.Windows.Forms.Button button1;
     }
 }
 

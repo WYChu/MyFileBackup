@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.IO;
 
-namespace MyFileBackup.Models
+namespace MyFileBackup.Handlers
 {
     public abstract class JsonManager
     {
