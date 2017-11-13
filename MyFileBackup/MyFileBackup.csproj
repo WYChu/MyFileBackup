@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Factories\FileFinderFactory.cs" />
     <Compile Include="Factories\HandlerFactory.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -59,11 +60,14 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Handlers\AbstractFileFinder.cs" />
     <Compile Include="Handlers\AbstractHandler.cs" />
     <Compile Include="Handlers\DirectoryHandler.cs" />
     <Compile Include="Handlers\EncodeHandler.cs" />
     <Compile Include="Handlers\FileHandler.cs" />
+    <Compile Include="Handlers\LocalFileFinder.cs" />
     <Compile Include="Handlers\ZipHandler.cs" />
+    <Compile Include="Interfaces\IFileFinder.cs" />
     <Compile Include="Interfaces\IHandler.cs" />
     <Compile Include="Models\Candidate.cs" />
     <Compile Include="Models\Config.cs" />
