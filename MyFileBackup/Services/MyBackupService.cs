@@ -1,7 +1,7 @@
-﻿using MyFileBackup.Factories;
+﻿using MyFileBackup.CandidateFactory;
+using MyFileBackup.Factories;
 using MyFileBackup.Handlers;
 using MyFileBackup.Interfaces;
-using MyFileBackup.Models;
 using System;
 using System.Collections.Generic;
 
@@ -14,6 +14,8 @@ namespace MyFileBackup.Services
         /// </summary>
         private List<JsonManager> managers = new List<JsonManager>();
 
+        private TaskDispatcher taskDispatcher;
+
         /// <summary>
         /// 建構子
         /// </summary>
@@ -22,18 +24,9 @@ namespace MyFileBackup.Services
             this.managers.Add(new ConfigManager());
             this.managers.Add(new ScheduleManager());
             //this.managers.Add(new PlateformManager());
-        }
+            this.taskDispatcher = new TaskDispatcher();
 
-        /// <summary>
-        /// 執行備份作業
-        /// </summary>
-        public void DoBackup()
-        {
-            List<Candidate> candidates = this.FindFiles();
-            foreach (Candidate candidate in candidates)
-            {
-                this.BroadcastToHandlers(candidate);
-            }
+            this.Init();
         }
 
         /// <summary>
@@ -48,17 +41,19 @@ namespace MyFileBackup.Services
         }
 
         /// <summary>
-        /// 依據檔案選擇處理方式
+        /// 排程備份
         /// </summary>
-        /// <param name="candidate">待處理檔案</param>
-        private void BroadcastToHandlers(Candidate candidate)
+        public void ScheduleBackup()
         {
-            List<IHandler> handlers = this.FindHandlers(candidate);
-            byte[] target = null;
-            foreach (IHandler handler in handlers)
-            {
-                target = handler.Perform(candidate, target);
-            }
+            this.taskDispatcher.ScheduleTask(managers);
+        }
+
+        /// <summary>
+        /// 簡易備份
+        /// </summary>
+        public void SimpleBackup()
+        {
+            this.taskDispatcher.SimpleTask(managers);
         }
 
         /// <summary>
@@ -70,25 +65,9 @@ namespace MyFileBackup.Services
             throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// 找尋備份處理器
-        /// </summary>
-        /// <param name="candidate"></param>
-        /// <returns>處理器的 interface</returns>
-        private List<IHandler> FindHandlers(Candidate candidate)
+        private void Init()
         {
-            List<IHandler> handlers = new List<IHandler>
-            {
-                HandlerFactory.Create("file")
-            };
-
-            foreach (string handler in candidate.Config.Handlers)
-            {
-                handlers.Add(HandlerFactory.Create(handler));
-            }
-
-            handlers.Add(HandlerFactory.Create(candidate.Config.Destination));
-            return handlers;
+            this.ProcessJsonConfigs();
         }
     }
 }

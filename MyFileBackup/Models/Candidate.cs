@@ -1,6 +1,7 @@
 ﻿using MyFileBackup.Medels;
+using System;
 
-namespace MyFileBackup.Models
+namespace MyFileBackup.CandidateFactory
 {
     /// <summary>
     /// Candiate
@@ -10,35 +11,49 @@ namespace MyFileBackup.Models
         /// <summary>
         /// 設定檔物件
         /// </summary>
-        private Config config;
+        private readonly Config config;
 
         /// <summary>
         /// 檔案的日期與時間
         /// </summary>
-        private string fileDataTime;
+        private readonly DateTime fileDateTime;
 
         /// <summary>
         /// 檔案名稱
         /// </summary>
-        private string name;
+        private readonly string name;
 
         /// <summary>
         /// 處理檔案的 process
         /// </summary>
-        private string processName;
+        private readonly string processName;
 
         /// <summary>
         /// 檔案 size
         /// </summary>
-        private string size;
+        private readonly int size;
 
         /// <summary>
         /// 建構子
         /// </summary>
         /// <param name="config">Config.</param>
-        public Candidate(Config config)
+        internal Candidate()
+        {
+        }
+
+        /// <summary>
+        /// 建構子
+        /// </summary>
+        /// <param name="config">設定檔</param>
+        /// <param name="name">檔名</param>
+        /// <param name="fileDatetime">建立時間</param>
+        /// <param name="size">檔案大小</param>
+        internal Candidate(Config config, string name, DateTime fileDatetime, int size)
         {
             this.config = config;
+            this.name = name;
+            this.fileDateTime = fileDatetime;
+            this.size = size;
         }
 
         /// <summary>
@@ -57,15 +72,11 @@ namespace MyFileBackup.Models
         /// 檔案日期時間
         /// </summary>
         /// <value>The file date time.</value>
-        public string FileDateTime
+        public DateTime FileDateTime
         {
             get
             {
-                return this.fileDataTime;
-            }
-            set
-            {
-                this.fileDataTime = value;
+                return this.fileDateTime;
             }
         }
 
@@ -79,10 +90,6 @@ namespace MyFileBackup.Models
             {
                 return this.name;
             }
-            set
-            {
-                this.name = value;
-            }
         }
 
         /// <summary>
@@ -95,25 +102,17 @@ namespace MyFileBackup.Models
             {
                 return this.processName;
             }
-            set
-            {
-                this.processName = value;
-            }
         }
 
         /// <summary>
         /// 檔案 size
         /// </summary>
         /// <value>The size.</value>
-        public string Size
+        public int Size
         {
             get
             {
                 return this.size;
-            }
-            set
-            {
-                this.size = value;
             }
         }
     }

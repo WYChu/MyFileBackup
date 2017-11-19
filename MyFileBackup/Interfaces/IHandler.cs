@@ -1,14 +1,9 @@
-﻿using MyFileBackup.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MyFileBackup.CandidateFactory;
 
 namespace MyFileBackup.Interfaces
 {
     public interface IHandler
     {
-        byte[] Perform(Candidate candiate, byte[] target);
+        byte[] Perform(Candidate candidate, byte[] target);
     }
 }

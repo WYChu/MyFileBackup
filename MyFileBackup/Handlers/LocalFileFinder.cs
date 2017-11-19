@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MyFileBackup.Models;
-using System.IO;
+﻿using MyFileBackup.CandidateFactory;
 using MyFileBackup.Medels;
+using System;
+using System.IO;
+using System.Linq;
 
 namespace MyFileBackup.Handlers
 {
@@ -44,8 +41,11 @@ namespace MyFileBackup.Handlers
         /// <returns></returns>
         protected override Candidate CreateCandidate(string fileName)
         {
+            int size = 0;
+            string name = string.Empty;
+            DateTime fileDatetime = DateTime.Now;
             // TODO
-            Candidate candidate = new Candidate(config);
+            Candidate candidate = CandidateFactories.Create(config, name, fileDatetime, size);
             return candidate;
         }
 
